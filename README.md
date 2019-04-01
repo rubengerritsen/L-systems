@@ -58,3 +58,8 @@ for j in range(0,nrOfIterations):
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example2.PNG "Anabaena catenula")
 on how to use the visualisation tools see: `LSystems_examples.py`
+
+### Bonus:
+In the jupyter notebook `3D Turtle Graphics + Application to L-systems.ipynb` an example of a 3D turtle applied to an L-system is presented.
+A possible result:
+![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_tree")
