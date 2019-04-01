@@ -19,7 +19,7 @@ General formatting rules:
 - Arrows are replaced by question marks
 
 An example: the axiom B(2)CA(4,4) should be entered as `"B(2) C A(4,4)"` (C is a module with no parameters).
-Production rules are of the following form: *left_context<predecessor>right_context:condition?successor*
+Production rules are of the following form: *left_context\<predecessor\>right_context:condition?successor*
 If a certain part is not needed in the production rule it can be left out. For example a context free rule would be of the form *predecessor:condition?successor*. A production rule without context and condition would be *predecessor?succesor*. Note that **the successor is always preceded by a questionmark** and **the condition is always preceded by a colon**.
 
 ### Two examples
