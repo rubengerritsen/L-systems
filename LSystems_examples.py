@@ -136,4 +136,4 @@ def run_Anabaena():
     
 if __name__ == "__main__":
     print("An example of L-systems applied to the development of Anabaena catenula.")
-    run_Anabaena()
+    run_Anabaen()
