@@ -5,8 +5,8 @@ Created on 2019-04-01
 @author: R.H.J. Gerritsen
 
 LSystems_examples.py illustrates the use of LSystems.py (and LSystems_visualise.py).
-One can simply run 'run_test(number)' with a number in the range [1,6] to see one 
-of the 6 test cases visualised with turtle graphics. For a more complex example and 
+One can simply run 'run_test(number)' with a number in the range [1,7] to see one 
+of the 7 test cases visualised with turtle graphics. For a more complex example and 
 a more complex visualisation one can try 'run_Anabaena()' which shows the development 
 of the bacteria Anabaena Catenula.
 
@@ -32,6 +32,7 @@ def run_test(choice):
     #            CASES           #
     ##############################
     # DOL-systems
+    ignore = ""
     if choice == 1: #Koch's snowflake
         # Specification of L-system
         nrOfIterations = 5
@@ -92,14 +93,33 @@ def run_test(choice):
         # for the visualization (optional)
         turtleDraw = True
         delta = 85
-        initial = 90     
+        initial = 90
+    elif choice == 7: #splitting tree with context
+        # Specification of L-system
+        axiom = "F 1 F 1 F 1"
+        productions = ["0<0>0?1",
+                       "0<0>1?1 [ - F 1 F 1 ]",
+                       "0<1>0?1",
+                       "0<1>1?1",
+                       "1<0>0?0",
+                       "1<0>1?1 F 1",
+                       "1<1>0?1",
+                       "1<1>1?0",
+                       "+?-",
+                       "-?+"]
+        ignore   = "+-F"
+        nrOfIterations = 30
+        # for the visualization (optional)
+        turtleDraw = True
+        delta = 22.5
+        initial = 90    
         
     ##############################
     #            MAIN            #
     ##############################
     
     # Setup/Initialize
-    system = LSystem(axiom, productions)
+    system = LSystem(axiom, productions,ignore)
 
     # Generate the L-system
     for j in range(0,nrOfIterations):

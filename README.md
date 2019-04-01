@@ -70,3 +70,6 @@ In the jupyter notebook `3D Turtle Graphics + Application to L-systems.ipynb` an
 A possible result:
 
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_tree")
+
+## Acknowledgements
+This project uses two modules from other authors. They are included here for completeness. It concerns the module `graphics.py` written by John Zelle and the module `py-expression-eval.py` written by Vera Mazhuga
