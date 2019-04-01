@@ -37,7 +37,7 @@ for j in range(0,nrOfIterations):
 ```
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example1.PNG "Koch's snowflake")
-on how to use the visualisation tools see: `LSystems_examples.py`
+for the use of the visualisation tools see: `LSystems_examples.py`
 #### Anabaena catenula (complex L-system)
 ```python
 # specify the L-system
@@ -57,4 +57,4 @@ for j in range(0,nrOfIterations):
 ```
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example2.PNG "Anabaena catenula")
-on how to use the visualisation tools see: `LSystems_examples.py`
+for the use of the visualisation tools see: `LSystems_examples.py`
