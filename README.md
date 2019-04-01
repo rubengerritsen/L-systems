@@ -36,7 +36,7 @@ for j in range(0,nrOfIterations):
     gen = system.nextGeneration()
 ```
 After visualisation that bit of code results in:
-![alt text](example1.PNG, "Koch's snowflake")
+![alt text](https://github.com/RHJG/L-systems/blob/master/example1.PNG, "Koch's snowflake")
 on how to use the visualisation tools see: `LSystems_examples.py`
 #### Anabaena catenula (complex L-system)
 ```python
@@ -56,5 +56,5 @@ for j in range(0,nrOfIterations):
     gen = system.nextGeneration()
 ```
 After visualisation that bit of code results in:
-![alt text](example2.PNG, "Koch's snowflake")
+![alt text](https://github.com/RHJG/L-systems/blob/master/example2.PNG, "Anabaena catenula")
 on how to use the visualisation tools see: `LSystems_examples.py`
