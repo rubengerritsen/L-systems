@@ -66,7 +66,7 @@ After visualisation that bit of code results in:
 on how to use the visualisation tools see: `LSystems_examples.py`
 
 ### Bonus:
-In the jupyter notebook `3D Turtle Graphics + Application to L-systems.ipynb` an example of a 3D turtle (in VPpython) applied to an L-system is presented.
+In the jupyter notebook `3D Turtle Graphics + Application to L-systems.ipynb` an example of a 3D turtle (in VPython) applied to an L-system is presented.
 A possible result:
 
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_tree")
