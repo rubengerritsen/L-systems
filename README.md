@@ -1,13 +1,19 @@
 # L-systems
 
 `LSystems.py` is a module for determenistic L-systems.
+Everything from DOL-systems to parametric context-sensitive L-systems is covered.
+
+The aim of this library is to provide an easy tool for L-system exploration. 
+To this end, user input is kept very simple, while still allowing for very complex 
+production rules. 
+
 `LSystems_examples.py` is a module that illustrates the use of the LSystems module.
 `LSystems_visualise.py` is a module for quick visualisations of some L-systems.
 
 ## What are L-systems:
 For a quick intro into the world of L-systems see: 
 *The Algorithmic Beauty Of Plants* by Przemyslaw Prusinkiewicz and Aristid Lindenmayer.
-Almost all examples in the code are based on examples from this book.
+Almost all examples in the code are based on examples from this book.  
 online: http://algorithmicbotany.org/papers/abop/abop.pdf
 
 ## How to use the LSystems module:
@@ -19,7 +25,7 @@ General formatting rules:
 - Arrows are replaced by question marks
 
 An example: the axiom B(2)CA(4,4) should be entered as `"B(2) C A(4,4)"` (C is a module with no parameters).
-Production rules are of the following form: *left_context<predecessor>right_context:condition?successor*
+Production rules are of the following form: *left_context\<predecessor\>right_context:condition?successor*
 If a certain part is not needed in the production rule it can be left out. For example a context free rule would be of the form *predecessor:condition?successor*. A production rule without context and condition would be *predecessor?succesor*. Note that **the successor is always preceded by a questionmark** and **the condition is always preceded by a colon**.
 
 ### Two examples
@@ -37,7 +43,7 @@ for j in range(0,nrOfIterations):
 ```
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example1.PNG "Koch's snowflake")
-on how to use the visualisation tools see: `LSystems_examples.py`
+for the use of the visualisation tools see: `LSystems_examples.py`
 #### Anabaena catenula (complex L-system)
 ```python
 # specify the L-system
