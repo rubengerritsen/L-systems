@@ -7,7 +7,7 @@
 ## What are L-systems:
 For a quick intro into the world of L-systems see: 
 *The Algorithmic Beauty Of Plants* by Przemyslaw Prusinkiewicz and Aristid Lindenmayer.
-Almost all examples in the code are based on examples from this book.
+Almost all examples in the code are based on examples from this book.  
 online: http://algorithmicbotany.org/papers/abop/abop.pdf
 
 ## How to use the LSystems module:
