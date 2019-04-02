@@ -9,6 +9,9 @@ production rules.
 
 `LSystems_examples.py` is a module that illustrates the use of the LSystems module.
 `LSystems_visualise.py` is a module for quick visualisations of some L-systems.
+`LSystems_3D.py` contains a 3D turtle graphics class and applies this to L-systems.
+As a result 3D trees can be simulated using L-systems. The code also allows for 
+the simulation of tropisms.
 
 ## What are L-systems:
 For a quick intro into the world of L-systems see: 
@@ -82,10 +85,14 @@ For formatting the production rules the following symbols are used:
 
 
 ### Bonus:
-In the jupyter notebook `3D Turtle Graphics + Application to L-systems.ipynb` an example of a 3D turtle (in VPython) applied to an L-system is presented.
-A possible result:
+With `LSystems_3D.py` 3D trees and shrubs can be simulated via L-systems and viewed using VPython. The code allows for tropisms (movement of plants, e.g. the movement towards light). Two possible results are shown below.
 
-![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_tree")
+##### A shrub with leaves
+![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_shrub")
+
+
+##### A tree that grows towards the light (phototropism)
+![alt text](https://github.com/RHJG/L-systems/blob/master/example4.PNG "3D_tree")
 
 ### Problems with turtle grahpics?
 Try changing `using_IDLE = True` to `using_IDLE = False` in the turtle.cfg file.
