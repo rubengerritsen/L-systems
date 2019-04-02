@@ -1,7 +1,7 @@
 # L-systems
 
-`LSystems.py` is a module for determenistic L-systems.
-Everything from DOL-systems to parametric context-sensitive L-systems is covered.
+`LSystems.py` is a module for L-systems.
+Everything from DOL-systems to parametric context-sensitive L-systems is covered, even stochastic production rules are supported.
 
 The aim of this library is to provide an easy tool for L-system exploration. 
 To this end, user input is kept very simple, while still allowing for very complex 
