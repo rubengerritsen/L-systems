@@ -137,7 +137,7 @@ class Rule:
                     return(False)               
                            
     
-    def getReplacement(self, left_context, mod, right_context):
+    def getReplacement(self, left_context, mod, right_context, definitions):
         """Get the lists of modules that should replace mod."""
         replacement = []
         if self.isStochastic:  #Choose a rule
@@ -166,6 +166,9 @@ class Rule:
             elif self.ruleType == self.TYPE_2L:
                 keys = self.left_context.param + self.symParam + self.right_context.param
                 values = left_context.param + mod.param + right_context.param
+            if definitions != []:
+                keys = keys + [item[0] for item in definitions]
+                values = values + [item[1] for item in definitions]
             new_dict = dict(zip(keys,  values))
             params = []
             for i in range(0, len(elem.param)):
@@ -176,30 +179,31 @@ class Rule:
         return(replacement)
 
 class LSystem:
-	def __init__(self, axiom, productions,ignore = []):
-		self.word = stringToAxiom(axiom)
-		self.productionRules = []
-		for line in productions:
-			self.productionRules.append(stringToRule(line))
-		self.ignore = ignore
+    def __init__(self, axiom, productions,ignore = [], definitions = []):
+        self.word = stringToAxiom(axiom)
+        self.productionRules = []
+        for line in productions:
+        	self.productionRules.append(stringToRule(line))
+        self.ignore = ignore
+        self.definitions = definitions
 
-	def nextGeneration(self):
-		""" Computes and returns the next generation as a list of modules. """
-		new_word = []
-		for i in range(0,len(self.word)):
-			mod = self.word[i]
-			left_context = findLeftContext(self.word, i, self.ignore)
-			right_context = findRightContext(self.word, i, self.ignore)
-			foundOne = False
-			for rule in self.productionRules: #find an applicable rule
-				if rule.isApplicable(left_context, mod, right_context):
-					new_word = new_word + rule.getReplacement(left_context, mod, right_context)
-					foundOne = True
-					break
-			if not foundOne: #then no replacement will occur
-				new_word = new_word + [mod]
-		self.word = new_word 
-		return(self.word)
+    def nextGeneration(self):
+        """Computes and returns the next generation as a list of modules. """
+        new_word = []
+        for i in range(0,len(self.word)):
+            mod = self.word[i]
+            left_context = findLeftContext(self.word, i, self.ignore)
+            right_context = findRightContext(self.word, i, self.ignore)
+            foundOne = False
+            for rule in self.productionRules: #find an applicable rule
+                if rule.isApplicable(left_context, mod, right_context):
+                    new_word = new_word + rule.getReplacement(left_context, mod, right_context,self.definitions)
+                    foundOne = True
+                    break
+            if not foundOne: #then no replacement will occur
+                new_word = new_word + [mod]
+        self.word = new_word 
+        return(self.word)
 
 
 
