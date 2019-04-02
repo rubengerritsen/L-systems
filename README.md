@@ -94,7 +94,7 @@ With `LSystems_3D.py` 3D trees and shrubs can be simulated via L-systems and vie
 ##### A tree that grows towards the light (phototropism)
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example4.PNG "3D_tree")
 
-### Problems with turtle grahpics?
+### Problems with turtle graphics?
 Try changing `using_IDLE = True` to `using_IDLE = False` in the turtle.cfg file.
 
 ## Acknowledgements
