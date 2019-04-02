@@ -65,11 +65,30 @@ After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example2.PNG "Anabaena catenula")
 on how to use the visualisation tools see: `LSystems_examples.py`
 
+### Stochastic production rules
+To enter a stochastic production rule the following form is used: *left_context\<predecessor\>right_context:condition?prob1;successor1;prob2;successor2 etc.*
+#### An example
+Suppose we want to replace F with a 33 percent chance by F[+F]F[-F]F, with a 33 percent chance by F[+F]F and with a 34 percent chance by F[-F]F. We would enter this as:
+```python
+productions = ["F?0.33;F [ + F ] F [ - F ] F;0.33;F [ + F ] F;0.34;F [ - F ] F"]
+```
+
+### Summary of special symbols
+For formatting the production rules the following symbols are used:
+- `:` precedes the condition
+- `?` precedes the successor
+- `,` seperates parameters
+- `;` seperates probabilities and successors (in stochastic production rules)
+
+
 ### Bonus:
 In the jupyter notebook `3D Turtle Graphics + Application to L-systems.ipynb` an example of a 3D turtle (in VPython) applied to an L-system is presented.
 A possible result:
 
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_tree")
+
+### Problems with turtle grahpics?
+Try changing `using_IDLE = True` to `using_IDLE = False` in the turtle.cfg file.
 
 ## Acknowledgements
 This project uses two modules from other authors. They are included here for completeness. It concerns the module `graphics.py` written by John Zelle and the module `py-expression-eval.py` written by Vera Mazhuga
