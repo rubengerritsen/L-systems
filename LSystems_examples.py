@@ -61,8 +61,7 @@ def run_test(choice):
         # For the visualization (optional)
         turtleDraw = True
         delta = 90
-        initial = 0
-        
+        initial = 0        
     # Bracketed DOL-system
     elif choice == 4: #Plant
         # Specification of L-system
@@ -72,8 +71,7 @@ def run_test(choice):
         # for the visualization (optional)
         turtleDraw = True
         delta = 22.5
-        initial = 90
-        
+        initial = 90        
     # Parametric DOL-system
     elif choice == 5: #Triangle filling curve
         # Specification of L-system
@@ -113,7 +111,14 @@ def run_test(choice):
         turtleDraw = True
         delta = 22.5
         initial = 90    
-        
+    elif choice == 8: #stochastic branching
+        axiom = "F"
+        productions = ["F?0.33;F [ + F ] F [ - F ] F;0.33;F [ + F ] F;0.34;F [ - F ] F"]
+        nrOfIterations = 5
+        # for the visualization
+        turtleDraw = True
+        delta = 23
+        initial = 90     
     ##############################
     #            MAIN            #
     ##############################
@@ -155,5 +160,38 @@ def run_Anabaena():
     visualisation.done() #closes visualisation on mouseclick
     
 if __name__ == "__main__":
-    print("An example of L-systems applied to the development of Anabaena catenula.")
-    run_Anabaen()
+    user_input = ""
+    print("")
+    print("Welcome to the examples of the LSystems.py module:")
+    print("")
+    print("Select one of the following cases by entering the corresponding number.")
+    print("To exit a visualisation simply click in the center of the image.")
+    print("To exit the program simply type 'exit' and press enter.")
+    print("")
+    print("CASES:")
+    print("{:5} {:<5} {:<25} {:<22}".format("", "0)", "Anabaena catenula", "Parametric 2L-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "1)", "Koch's snowflake", "DOL-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "2)", "Dragon curve", "DOL-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "3)", "Islands and lakes", "DOL-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "4)", "Simple plant", "Bracketed DOL-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "5)", "Triangle filling curve", "Para. DOL-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "6)", "Filling curve (tree)", "Para.Bra. DOL-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "7)", "Plant", "Bracketed 2L-system"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "8)", "Plant", "Stochastic DOL-system"))
+    while user_input != "exit":
+        user_input = input("Enter case as a number: ")
+        if user_input == "exit":
+                break
+        try:
+            val = int(user_input)
+            print("Running case: ", val)
+        except ValueError:
+            print("That is not a valid choice, try again: ")
+            continue #start again at the top of the while loop
+        if val == 0:
+            print("An example of L-systems applied to the development of Anabaena catenula.")
+            run_Anabaena()
+        elif val < 9:
+            run_test(val)
+        else:
+            print("That is not a valid choice, try again: ")

@@ -152,8 +152,12 @@ def turtle_interpretation(instructions, delta = 90, initialAngle = 90, distance 
     turtle.setworldcoordinates(turtleXmin-margin, turtleYmin-margin, turtleXmax+margin, turtleYmax+margin)
 
     ####### CLEANUP ###########
+    # print("Press a key to continue:")
+    # input()
+    # turtle.bye()
     turtle.exitonclick()
     return 0
+
 
 
 if __name__ == "__main__":
