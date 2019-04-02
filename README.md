@@ -80,7 +80,7 @@ productions = ["F?0.33;F [ + F ] F [ - F ] F;0.33;F [ + F ] F;0.34;F [ - F ] F"]
 For formatting the production rules the following symbols are used:
 - `:` precedes the condition
 - `?` precedes the successor
-- ` ` *space* seperates modules 
+- `" "` *space* seperates modules 
 - `,` seperates parameters
 - `;` seperates probabilities and successors (in stochastic production rules)
 
