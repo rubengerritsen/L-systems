@@ -4,8 +4,9 @@ Created on 2019-04-01
 
 @author: R.H.J. Gerritsen
 
-LSystems.py is a module for determenistic L-systems.
-Everything from DOL-systems to parametric 2L-systems is covered.
+LSystems.py is a module for L-systems.
+Everything from DOL-systems to parametric 2L-systems is covered,
+also stochastic production rules are supported.
 
 The aim of this library is to provide an easy tool for L-system exploration. 
 To this end, user input is kept very simple, while still allowing for very complex 
@@ -40,6 +41,7 @@ OVERVIEW:     This module consists of the classes: Module, Rule and LSystem.
 
 import re     
 from py_expression_eval import Parser
+from random import random
 
 ########################################
 #               CLASSES                #
@@ -65,20 +67,22 @@ class Rule:
 	If a rule does not use left_context or right_context an empty module can be passed. 
 	The condition can be given as a string. The successor is a list of replacement instructions.
     """
-    def __init__(self, ruleType, left_context, predecessor, right_context, condition = "", successor = []):
+    def __init__(self, ruleType, left_context, predecessor, right_context, condition = "", successor = [], probs = []):
         # RuleTypes:
         self.TYPE_OL            = 0                    #context free rule
         self.TYPE_L1L           = 1                    #left context rule
         self.TYPE_R1L           = 2                    #right context rule
         self.TYPE_2L            = 3                    #left and right context rule      
-        # assigning variables
+        # assigning variables        
         self.ruleType           = ruleType                      
         self.parser             = Parser()
         self.predecessorSymbol  = predecessor.symbol   # the symbol of the predecessor
         self.symParam           = predecessor.param    # a list of symbolic representations of variables
-        self.successor          = successor            # list of symbols and for every parameter an expression [[ "symbol",   [param]], [...]]  
+        self.successor          = successor            # list of symbols and for every parameter an expression [[ "symbol",   [param]], [...]]  in case of stochastic a list of lists
         self.left_context       = left_context
         self.right_context      = right_context
+        self.isStochastic       = (probs != []) 
+        self.probs              = probs                # if stochastic then this contains a list of the probabilities
         # if the condition is non-empty parse it to an expression
         if condition != "":
             self.condition      = self.parser.parse(condition)  # the condition in string form
@@ -136,7 +140,19 @@ class Rule:
     def getReplacement(self, left_context, mod, right_context):
         """Get the lists of modules that should replace mod."""
         replacement = []
-        for elem in self.successor:
+        if self.isStochastic:  #Choose a rule
+            choice = random()
+            cumulative = 0
+            for i in range(0,len(self.probs)):
+                cumulative += self.probs[i]
+                if cumulative > choice:
+                    index = i
+                    break
+            currentRule = self.successor[index]
+        else:
+            currentRule = self.successor
+        #Now convert the rule into a list of replacement modules
+        for elem in currentRule:
             #generate replacement dictionary
             if self.ruleType == self.TYPE_OL:
                 keys = self.symParam
@@ -270,11 +286,26 @@ def stringToPredecessor(string):
         return(-1)   
 
 def stringToSuccessor(string):
-    successor = []
-    splitted = string.split(" ")
-    for mod in splitted:
-        successor.append(stringToSymModWithExpr(mod.strip()))
-    return(successor)
+    if string.find(";") == -1: # Then: non-stochastic rule
+        probs = []
+        successor = []
+        splitted = string.split(" ")
+        for mod in splitted:
+            successor.append(stringToSymModWithExpr(mod.strip()))
+        return(probs, successor)
+    else: # Stochastic rule
+        probsAndRules = string.split(";")
+        probs = probsAndRules[0::2]
+        probs = list(map(float, probs))
+        rules = probsAndRules[1::2]
+        listOfSuccessors = []
+        for i in range(0,len(probs)):
+            successor = []
+            splitted = rules[i].split(" ")
+            for mod in splitted:
+                successor.append(stringToSymModWithExpr(mod.strip()))
+            listOfSuccessors.append(successor)
+        return(probs, listOfSuccessors)
 
 def stringToAxiom(string):
     """Takes an axiom as a string and converts it into a list of modules."""
@@ -289,9 +320,11 @@ def stringToRule(string):
     productionRule = re.split("[?:]+", string)
     rule_type, predecessor = stringToPredecessor(productionRule[0])
     if len(productionRule) == 2:
-        return(Rule(rule_type, predecessor[0], predecessor[1], predecessor[2], "", stringToSuccessor(productionRule[1])))
+        probs, successor = stringToSuccessor(productionRule[1])
+        return(Rule(rule_type, predecessor[0], predecessor[1], predecessor[2], "", successor, probs))
     else:
-        return(Rule(rule_type, predecessor[0], predecessor[1], predecessor[2], productionRule[1], stringToSuccessor(productionRule[2])))
+        probs, successor = stringToSuccessor(productionRule[2])
+        return(Rule(rule_type, predecessor[0], predecessor[1], predecessor[2], productionRule[1], successor, probs))
 
 ########################################
 #             FIND CONTEXT             #
