@@ -3,7 +3,7 @@
 `LSystems.py` is a module for L-systems.
 Everything from DOL-systems to parametric context-sensitive L-systems is covered, even stochastic production rules are supported.
 
-The aim of this library is to provide an easy tool for L-system exploration. 
+The aim of this library is to provide an easy tool for L-system exploration (for example in conjunction with the book: *The Algorithmic Beauty Of Plants*). 
 To this end, user input is kept very simple, while still allowing for very complex 
 production rules. 
 
