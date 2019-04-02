@@ -1,3 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+Created on 2019-04-02
+
+@author: R.H.J. Gerritsen
+
+LSystems_3D.py contains a 3D turtle graphics class and applies this to L-systems.
+As a result 3D trees can be simulated using L-systems. The code also allows for 
+the simulation of tropisms.
+
+To see what this code can do, simply run the file and follow the instructions 
+to see a few cases (trees and shrubs).
+
+INSTALLATION: Put this file somewhere where Python can see it (e.g. in the 
+              working directory.)
+
+DEPENDENCIES: This module depends on LSystems.py and VPython
+              VPython: https://vpython.org/ 
+
+OVERVIEW:     This module contains a few examples that illustrate the use of a 
+              3D turtle graphics class applied to L-systems.
+"""
 from vpython import *
 from LSystems import *
 import os
@@ -238,80 +260,104 @@ def turtle_interpretation_3D(scene, instructions, delta = 22.5, width = 0.3, wid
     return 0
 
 if __name__ == "__main__":
-########## INPUT #########
-	choice = 3
-	if choice == 0:
-		axiom = "A"    
-		productions = ["A?'(151,75,0) [ & F L ! A ] / / / / / '(151,75,0) [ & F L ! A ] / / / / / / / '(151,75,0) [ & F L ! A ]", 
-		           "F?S / / / / / F",
-		           "S?F L",
-		           "L?[ '(12,102,0) ^ ^ { - f + f + f - | - f + f + f } ]"]
-		nrOfIterations = 7
-		width = 1
-		definitions = []
-		tropismVector   = vector(0,0,0)
-		tropismStrength = 0
-	elif choice == 1:
-		axiom = "A(10,1)"
-		productions = ["A(l,w)?!(w) F(l) [ &(a0) B(l*r2,w*wr) ] /(137.5) A(l*r1,w*wr)", 
-		           "B(l,w)?!(w) F(l) [ -(a2) $ C(l*r2,w*wr) ] C(l*r1,w*wr)",
-		           "C(l,w)?!(w) F(l) [ +(a2) $ B(l*r2,w*wr) ] B(l*r1,w*wr)"] 
-		nrOfIterations = 10
-		width = 1
-		definitions = [['r1', 0.9],
-	                  ['r2', 0.6],
-	                  ['a0', 45],
-	                  ['a2', 45],
-	                  ['d', 137.5],
-	                  ['wr', 0.707]
-	                  ]
-		tropismVector   = vector(0,0,0)
-		tropismStrength = 0
-	elif choice == 2:
-		axiom = "A(10,1)"
-		productions = ["A(l,w)?!(w) F(l) [ &(a0) B(l*r2,w*wr) ] /(d) A(l*r1,w*wr)", 
-		           "B(l,w)?!(w) F(l) [ -(a2) $ C(l*r2,w*wr) ] C(l*r1,w*wr)",
-		           "C(l,w)?!(w) F(l) [ +(a2) $ B(l*r2,w*wr) ] B(l*r1,w*wr)"] 
-		nrOfIterations = 10
-		width = 1
-		definitions = [['r1', 0.9],
-		              ['r2', 0.7],
-		              ['a0', 30],
-		              ['a2', -30],
-		              ['d', 137.5],
-		              ['wr', 0.707]
-		              ]
-		tropismVector   = vector(0,0,0)
-		tropismStrength = 0
-	elif choice == 3:
-		axiom = "!(1) F(200) /(45) A"
-		productions = ["A?!(vr) F(50) [ &(a) F(50) A ] /(d1) [ &(a) F(50) A ] /(d2) [ &(a) F(50) A ]", 
-		               "F(l)?F(l*lr)",
-		               "!(w)?!(w*vr)"] 
-		nrOfIterations = 6
-		width = 1 * 1.732 ** (nrOfIterations + 0.5)
-		definitions = [['d1', 180],
-		              ['d2', 252],
-		              ['a', 36],
-		              ['lr', 1.07],
-		              ['vr', 1.732],
-		              ] 
-		tropismVector   = vector(0.61,0.77,-0.19)
-		tropismStrength = 0.4
+    print("")
+    print("Welcome to the 3D examples of the LSystems.py module:")
+    print("")
+    print("Select one of the following cases by entering the corresponding number.")
+    print("To exit a visualisation press enter in the command prompt.")
+    print("To exit the program simply type 'exit' and press enter.")
+    print("")
+    print("CASES:")
+    print("{:5} {:<5} {:<25} {:<22}".format("", "0)", "Shrub with leaves", "May take a while to fully render"))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "1)", "Simple tree 1", ""))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "2)", "Simple tree 2", ""))
+    print("{:5} {:<5} {:<25} {:<22}".format("", "3)", "Tree with phototropism", "Shows an L-system visualised with a tropism"))
+    user_input = ""
+    while user_input != "exit":
+        user_input = input("Enter case as a number or type 'exit' to close: ")
+        if user_input == "exit":
+                break
+        try:
+            choice = int(user_input)
+            print("Running case: ", choice)
+        except ValueError:
+            print("That is not a valid choice, try again: ")
+            continue #start again at the top of the while loop
+        if choice == 0: #shrub with leaves
+            axiom = "A"    
+            productions = ["A?'(151,75,0) [ & F L ! A ] / / / / / '(151,75,0) [ & F L ! A ] / / / / / / / '(151,75,0) [ & F L ! A ]", 
+                       "F?S / / / / / F",
+                       "S?F L",
+                       "L?[ '(12,102,0) ^ ^ { - f + f + f - | - f + f + f } ]"]
+            nrOfIterations = 7
+            width = 1
+            definitions = []
+            tropismVector   = vector(0,0,0)
+            tropismStrength = 0
+        elif choice == 1: #simple tree 1
+            axiom = "A(10,1)"
+            productions = ["A(l,w)?!(w) F(l) [ &(a0) B(l*r2,w*wr) ] /(137.5) A(l*r1,w*wr)", 
+                       "B(l,w)?!(w) F(l) [ -(a2) $ C(l*r2,w*wr) ] C(l*r1,w*wr)",
+                       "C(l,w)?!(w) F(l) [ +(a2) $ B(l*r2,w*wr) ] B(l*r1,w*wr)"] 
+            nrOfIterations = 10
+            width = 1
+            definitions = [['r1', 0.9],
+                          ['r2', 0.6],
+                          ['a0', 45],
+                          ['a2', 45],
+                          ['d', 137.5],
+                          ['wr', 0.707]
+                          ]
+            tropismVector   = vector(0,0,0)
+            tropismStrength = 0
+        elif choice == 2: #simple tree 2
+            axiom = "A(10,1)"
+            productions = ["A(l,w)?!(w) F(l) [ &(a0) B(l*r2,w*wr) ] /(d) A(l*r1,w*wr)", 
+                       "B(l,w)?!(w) F(l) [ -(a2) $ C(l*r2,w*wr) ] C(l*r1,w*wr)",
+                       "C(l,w)?!(w) F(l) [ +(a2) $ B(l*r2,w*wr) ] B(l*r1,w*wr)"] 
+            nrOfIterations = 10
+            width = 1
+            definitions = [['r1', 0.9],
+                          ['r2', 0.7],
+                          ['a0', 30],
+                          ['a2', -30],
+                          ['d', 137.5],
+                          ['wr', 0.707]
+                          ]
+            tropismVector   = vector(0,0,0)
+            tropismStrength = 0
+        elif choice == 3: #phototropism
+            axiom = "!(1) F(200) /(45) A"
+            productions = ["A?!(vr) F(50) [ &(a) F(50) A ] /(d1) [ &(a) F(50) A ] /(d2) [ &(a) F(50) A ]", 
+                           "F(l)?F(l*lr)",
+                           "!(w)?!(w*vr)"] 
+            nrOfIterations = 6
+            width = 1 * 1.732 ** (nrOfIterations + 0.5)
+            definitions = [['d1', 180],
+                          ['d2', 252],
+                          ['a', 36],
+                          ['lr', 1.07],
+                          ['vr', 1.732],
+                          ] 
+            tropismVector   = vector(0.61,0.77,-0.19)
+            tropismStrength = 0.4
+        else:
+            print("That is not a valid choice, try again: ")
+            continue
 
-	########### MAIN #############
+        ########### MAIN #############
 
-	# Initialize
-	scene = canvas(width = 1280, height = 720) #Make screen ready for visualisation	
-	system = LSystem(axiom,productions, definitions = definitions) #Setup L-system
+        # Initialize
+        scene = canvas(width = 1280, height = 720) #Make screen ready for visualisation	
+        system = LSystem(axiom,productions, definitions = definitions) #Setup L-system
 
-	# Compute the generations
-	for i in range(nrOfIterations):
-	    tree = system.nextGeneration()
+        # Compute the generations
+        for i in range(nrOfIterations):
+            tree = system.nextGeneration()
 
-	#visualise the result
-	turtle_interpretation_3D(scene, tree, delta = 22.5, width = width, widthScaling = 0.57, tropismVec = tropismVector, tropismStrength = tropismStrength)
-	print("Press enter to exit animation: ")
-	input()
-	scene.delete()
-	os._exit(0)
+        #visualise the result
+        turtle_interpretation_3D(scene, tree, delta = 22.5, width = width, widthScaling = 0.57, tropismVec = tropismVector, tropismStrength = tropismStrength)
+        print("Press enter to exit animation: ")
+        input()
+        scene.delete()
+    os._exit(0)

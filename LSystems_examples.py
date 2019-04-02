@@ -20,7 +20,7 @@ DEPENDENCIES: This module depends on LSystems.py and LSystems_visualise.py.
               py_expression_eval: https://github.com/Axiacore/py-expression-eval
               graphics:           https://mcsp.wartburg.edu/zelle/python/graphics.py
 
-OVERVIEW:     This module contains a view examples that illustrate the use of LSystems.py
+OVERVIEW:     This module contains a few examples that illustrate the use of LSystems.py
 """
 
 from LSystems import *
@@ -179,7 +179,7 @@ if __name__ == "__main__":
     print("{:5} {:<5} {:<25} {:<22}".format("", "7)", "Plant", "Bracketed 2L-system"))
     print("{:5} {:<5} {:<25} {:<22}".format("", "8)", "Plant", "Stochastic DOL-system"))
     while user_input != "exit":
-        user_input = input("Enter case as a number: ")
+        user_input = input("Enter case as a number or type 'exit' to close: ")
         if user_input == "exit":
                 break
         try:
