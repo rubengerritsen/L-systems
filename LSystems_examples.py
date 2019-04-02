@@ -118,7 +118,7 @@ def run_test(choice):
         # for the visualization
         turtleDraw = True
         delta = 23
-        initial = 90     
+        initial = 90
     ##############################
     #            MAIN            #
     ##############################
