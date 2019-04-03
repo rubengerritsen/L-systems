@@ -18,7 +18,7 @@ The language used to describe L-systems here is based on the language used in th
 For examples please refer to LSystems_examples.py
 
 INSTALLATION: Put this file somewhere where Python can see it (e.g. in the 
-			  working directory.)
+              working directory.)
 
 DEPENDENCIES: This library heavily depends on the py_expression_eval module 
               by Vera Mazhuga. Which can be downloaded from:
@@ -63,9 +63,9 @@ class Module:
 class Rule:
     """Rule represents a replacement rule with its predecessor, condition and successor.
 
-	Rule can contain any type of production rule. The type is indicated by a number.
-	If a rule does not use left_context or right_context an empty module can be passed. 
-	The condition can be given as a string. The successor is a list of replacement instructions.
+    Rule can contain any type of production rule. The type is indicated by a number.
+    If a rule does not use left_context or right_context an empty module can be passed. 
+    The condition can be given as a string. The successor is a list of replacement instructions.
     """
     def __init__(self, ruleType, left_context, predecessor, right_context, condition = "", successor = [], probs = []):
         # RuleTypes:
@@ -183,7 +183,7 @@ class LSystem:
         self.word = stringToAxiom(axiom)
         self.productionRules = []
         for line in productions:
-        	self.productionRules.append(stringToRule(line))
+            self.productionRules.append(stringToRule(line))
         self.ignore = ignore
         self.definitions = definitions
 

@@ -13,7 +13,7 @@ For code that computes L-systems: LSystems.py
 For examples please refer to:     LSystems_examples.py
 
 INSTALLATION: Put this file somewhere where Python can see it (e.g. in the 
-		working directory.)
+        working directory.)
 
 DEPENDENCIES: 1) This module depends on the graphics module 
               by John Zelle. Which can be downloaded from:
