@@ -166,7 +166,7 @@ class Rule:
             elif self.ruleType == self.TYPE_2L:
                 keys = self.left_context.param + self.symParam + self.right_context.param
                 values = left_context.param + mod.param + right_context.param
-            if definitions != []:
+            if definitions != []: #this means there are named variables with a definition in that case we add them to the variables
                 keys = keys + [item[0] for item in definitions]
                 values = values + [item[1] for item in definitions]
             new_dict = dict(zip(keys,  values))
