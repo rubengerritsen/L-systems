@@ -127,7 +127,7 @@ class Turtle3D:
         self.currentColor = self.colorStack.pop(0)
 
     def setWidth(self, width):
-    	self.width = width
+        self.width = width
         
     def decrementDiameter(self, scaling):
         self.width = self.width*scaling
@@ -153,11 +153,11 @@ class Turtle3D:
         self.currentColor = vector(rgb[0]/255,rgb[1]/255,rgb[2]/255)
 
     def applyTropism(self, tropismVec, tropismStrength):
-    	correction = tropismStrength * cross(norm(self.heading),tropismVec)
-    	self.heading +=  self.heading.rotate(mag(correction),correction)
+        correction = tropismStrength * cross(norm(self.heading),tropismVec)
+        self.heading +=  self.heading.rotate(mag(correction),correction)
 
     def drawGround(self, size):
-    	box(pos=vector(0,0,0), length=size, height=-size/100, width=size, color = vector(10/255,85/255,0))
+        box(pos=vector(0,0,0), length=size, height=-size/100, width=size, color = vector(10/255,85/255,0))
     
 
 def turtle_interpretation_3D(scene, instructions, delta = 22.5, width = 0.3, widthScaling = 0.7, tropismVec = vector(0,0,0), tropismStrength = 0):
@@ -178,55 +178,55 @@ def turtle_interpretation_3D(scene, instructions, delta = 22.5, width = 0.3, wid
     ######### MAIN FUNCTION ##############
     for mod in instructions:
         if mod.symbol == "F":
-        	bob.applyTropism(tropismVec, tropismStrength)
-        	if mod.param == []:
-        		bob.forward()
-        	else:
-        		bob.forward(mod.param[0])
-        	#Note that we only need to update the max coordinates if the turtle has moved
-        	turtleXmax = max(turtleXmax, bob.xcor())
-        	turtleXmin = min(turtleXmin, bob.xcor())
-        	turtleYmax = max(turtleYmax, bob.ycor())
-        	turtleYmin = min(turtleYmin, bob.ycor())
-        	turtleZmax = max(turtleZmax, bob.zcor())
-        	turtleZmin = min(turtleZmin, bob.zcor()) 
+            bob.applyTropism(tropismVec, tropismStrength)
+            if mod.param == []:
+                bob.forward()
+            else:
+                bob.forward(mod.param[0])
+            #Note that we only need to update the max coordinates if the turtle has moved
+            turtleXmax = max(turtleXmax, bob.xcor())
+            turtleXmin = min(turtleXmin, bob.xcor())
+            turtleYmax = max(turtleYmax, bob.ycor())
+            turtleYmin = min(turtleYmin, bob.ycor())
+            turtleZmax = max(turtleZmax, bob.zcor())
+            turtleZmin = min(turtleZmin, bob.zcor()) 
         elif mod.symbol == "f":
-        	bob.penUp()
-        	if mod.param == []:
-        		bob.forward()
-        	else:
-        		bob.forward(mod.param[0])
-        	bob.penDown()
+            bob.penUp()
+            if mod.param == []:
+                bob.forward()
+            else:
+                bob.forward(mod.param[0])
+            bob.penDown()
         elif mod.symbol == "+":
-        	if mod.param == []:
-        		bob.turnLeft(delta)
-        	else:
-        		bob.turnLeft(mod.param[0])
+            if mod.param == []:
+                bob.turnLeft(delta)
+            else:
+                bob.turnLeft(mod.param[0])
         elif mod.symbol == "-":
-        	if mod.param == []:
-        		bob.turnRight(delta)
-        	else:
-        		bob.turnRight(mod.param[0])
+            if mod.param == []:
+                bob.turnRight(delta)
+            else:
+                bob.turnRight(mod.param[0])
         elif mod.symbol == "&":
-        	if mod.param == []:
-        		bob.pitchDown(delta)
-        	else:
-        		bob.pitchDown(mod.param[0])
+            if mod.param == []:
+                bob.pitchDown(delta)
+            else:
+                bob.pitchDown(mod.param[0])
         elif mod.symbol == "^":
-        	if mod.param == []:
-        		bob.pitchUp(delta)
-        	else:
-        		bob.pitchUP(mod.param[0])
+            if mod.param == []:
+                bob.pitchUp(delta)
+            else:
+                bob.pitchUP(mod.param[0])
         elif mod.symbol == "\\":
-        	if mod.param == []:
-        		bob.rollLeft(delta)
-        	else:
-        		bob.rollLeft(mod.param[0])
+            if mod.param == []:
+                bob.rollLeft(delta)
+            else:
+                bob.rollLeft(mod.param[0])
         elif mod.symbol == "/":
-        	if mod.param == []:
-        		bob.rollRight(delta)
-        	else:
-        		bob.rollRight(mod.param[0])
+            if mod.param == []:
+                bob.rollRight(delta)
+            else:
+                bob.rollRight(mod.param[0])
         elif mod.symbol == "|":
             bob.turnLeft(180)
         elif mod.symbol == "[":
@@ -238,10 +238,10 @@ def turtle_interpretation_3D(scene, instructions, delta = 22.5, width = 0.3, wid
             bob.setHeading(turtleHeadStack.pop(0)) 
             bob.popCurve()
         elif mod.symbol == "!":
-        	if mod.param == []:
-        		bob.decrementDiameter(widthScaling)
-        	else:
-        		bob.setWidth(mod.param[0])
+            if mod.param == []:
+                bob.decrementDiameter(widthScaling)
+            else:
+                bob.setWidth(mod.param[0])
         elif mod.symbol == "{":
             bob.startPolygon()
         elif mod.symbol == "}":
