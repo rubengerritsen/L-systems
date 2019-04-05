@@ -15,10 +15,10 @@ the simulation of tropisms.
 
 ## What are L-systems
 
-For a quick intro into the world of L-systems see: 
+For a quick intro into the world of L-systems see:
 *The Algorithmic Beauty Of Plants* by Przemyslaw Prusinkiewicz and Aristid Lindenmayer.
 Almost all examples in the code are based on examples from this book.  
-online: http://algorithmicbotany.org/papers/abop/abop.pdf
+online: <http://algorithmicbotany.org/papers/abop/abop.pdf>
 
 ## How to use the LSystems module
 
@@ -50,7 +50,8 @@ system = LSystem(axiom,productions)
 # Generate the L-system generations
 for j in range(0,nrOfIterations):
     gen = system.nextGeneration()
-```
+
+
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example1.PNG "Koch's snowflake")
 for the use of the visualisation tools see: `LSystems_examples.py`
@@ -73,6 +74,7 @@ system = LSystem(axiom, productions,ignore)
 for j in range(0,nrOfIterations):
     gen = system.nextGeneration()
 ```
+
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example2.PNG "Anabaena catenula")
 on how to use the visualisation tools see: `LSystems_examples.py`
@@ -107,12 +109,11 @@ With `LSystems_3D.py` 3D trees and shrubs can be simulated via L-systems and vie
 
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example3.PNG "3D_shrub")
 
-
 #### A tree that grows towards the light (phototropism)
 
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example4.PNG "3D_tree")
 
-### Problems with turtle graphics?
+### Problems with turtle graphics
 
 Try changing `using_IDLE = True` to `using_IDLE = False` in the turtle.cfg file.
 
