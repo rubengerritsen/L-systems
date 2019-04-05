@@ -14,14 +14,15 @@ to see a few cases (trees and shrubs).
 INSTALLATION: Put this file somewhere where Python can see it (e.g. in the 
               working directory.)
 
-DEPENDENCIES: This module depends on LSystems.py and VPython
+DEPENDENCIES: This module depends on LSystems.py and VPython.
               VPython: https://vpython.org/ 
+              
 
 OVERVIEW:     This module contains a few examples that illustrate the use of a 
               3D turtle graphics class applied to L-systems.
 """
-from vpython import *
-from LSystems import *
+from vpython import vertex, vector, curve, triangle, canvas, cross, norm, mag, radians, box, color, distant_light
+from LSystems import LSystem
 import os
 
 class Turtle3D:
@@ -43,14 +44,13 @@ class Turtle3D:
         self.c               = curve(dict(zip(keys, values)))
         
     def forward(self, distance = 1):
-        oldPosition = self.position
         self.position = self.position + distance * norm(self.heading)
-        keys = ['pos', 'color' ,'radius']
-        values = [self.position, self.currentColor, self.width]
-        new_pos = dict(zip(keys, values))
-        if self.isDrawing:
+        if self.isDrawing: #We add the point with its radius and color to the current curve
+            keys = ['pos', 'color' ,'radius']
+            values = [self.position, self.currentColor, self.width]
+            new_pos = dict(zip(keys, values))
             self.c.append(new_pos)
-        if self.polygon:
+        if self.polygon: #We store the point to use it later on to generate the polygon, see "endPolygon()"
             self.listOfVectors.append(self.position)
     
     def turnLeft(self, angle = 22.5):
@@ -216,7 +216,7 @@ def turtle_interpretation_3D(scene, instructions, delta = 22.5, width = 0.3, wid
             if mod.param == []:
                 bob.pitchUp(delta)
             else:
-                bob.pitchUP(mod.param[0])
+                bob.pitchUp(mod.param[0])
         elif mod.symbol == "\\":
             if mod.param == []:
                 bob.rollLeft(delta)
@@ -254,9 +254,15 @@ def turtle_interpretation_3D(scene, instructions, delta = 22.5, width = 0.3, wid
     ycenter = (turtleYmax+turtleYmin)/2
     zcenter = 0
     scene.center=vector(xcenter,ycenter,zcenter)
-    # draw some a ground plane
+    # draw a ground plane
     bob.drawGround(max(turtleXmax,turtleZmax)*2)
-    scene.ambient=color.gray(0.4)
+    # set lighting
+    scene.lights = [] # reset default lighting
+    scene.ambient=color.gray(0.3)
+    distant_light(direction=vector(0.22, 0.44, 0.88), color=color.gray(0.7))
+    distant_light(direction=vector(-0.88, -0.22, -0.44), color=color.gray(0.3))
+    distant_light(direction=vector(-0.22, -0.44, -0.88), color=color.gray(0.7))
+    distant_light(direction=vector(0.88, 0.22, 0.44), color=color.gray(0.3))
     return 0
 
 if __name__ == "__main__":
@@ -356,7 +362,7 @@ if __name__ == "__main__":
             tree = system.nextGeneration()
 
         #visualise the result
-        turtle_interpretation_3D(scene, tree, delta = 22.5, width = width, widthScaling = 0.57, tropismVec = tropismVector, tropismStrength = tropismStrength)
+        turtle_interpretation_3D(scene, tree, delta = 22.5, width = width, widthScaling = 1, tropismVec = tropismVector, tropismStrength = tropismStrength)
         print("Press enter to exit animation: ")
         input()
         scene.delete()
