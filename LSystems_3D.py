@@ -362,7 +362,7 @@ if __name__ == "__main__":
             tree = system.nextGeneration()
 
         #visualise the result
-        turtle_interpretation_3D(scene, tree, delta = 22.5, width = width, widthScaling = 1, tropismVec = tropismVector, tropismStrength = tropismStrength)
+        turtle_interpretation_3D(scene, tree, delta = 22.5, width = width, widthScaling = 0.57, tropismVec = tropismVector, tropismStrength = tropismStrength)
         print("Press enter to exit animation: ")
         input()
         scene.delete()
