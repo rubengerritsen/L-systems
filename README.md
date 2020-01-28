@@ -50,7 +50,7 @@ system = LSystem(axiom,productions)
 # Generate the L-system generations
 for j in range(0,nrOfIterations):
     gen = system.nextGeneration()
-
+```
 
 After visualisation that bit of code results in:
 ![alt text](https://github.com/RHJG/L-systems/blob/master/example1.PNG "Koch's snowflake")
