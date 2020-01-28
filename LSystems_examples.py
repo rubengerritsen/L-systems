@@ -65,7 +65,7 @@ def run_test(choice):
     # Bracketed DOL-system
     elif choice == 4: #Plant
         # Specification of L-system
-        nrOfIterations = 4
+        nrOfIterations = 2
         axiom = "F"
         productions = ["F?F F - [ - F + F + F ] + [ + F - F - F ]"]
         # for the visualization (optional)
